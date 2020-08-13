@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 const { listenerCount } = require('process');
 
-http.createServer(function (req, res) {
+http.createServer(function (request, response) {
     console.log('request ', request.url);
 
     var filePath = '.' + http.request.url;
@@ -24,12 +24,12 @@ http.createServer(function (req, res) {
         '.mp4': 'video/mp4'
     };
     var contentType = mimeTypes[extname] || 'application/octet-stream';
-    fs.readFile(filePath, function(error, content) {
+    fs.readFile(filePath, function(error, request) {
         if (error) {
             if(error.code == 'ENDENT') {
-                fs.readFile('./404.html', function(error, content) {
+                fs.readFile('./404.html', function(error, request) {
                     response.writeHead(404, { 'Content-Type': contentType });
-                    response.end(content, 'utf-8');
+                    response.end(request, 'utf-8');
                 });
             }
             else {
