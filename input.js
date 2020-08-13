@@ -3,12 +3,26 @@ const readline = require('readline').createInterface({
 	output: process.stdout
 })
 
-readline.question(`What is your name?`, (name) => {
+const question1 = () => {
+	return new Promise((resolve, reject) => {
+	readline.question(`What is your name?`, (name) => {
 	console.log(`${name} is such a great name!`)
-	readline.close()
+	resolve()
 })
-readline.question(`What is your favorite movie?`, (movie) => {
+})
+}
+const question2 = () => {
+	return new Promise((resolve, reject) => {
+	readline.question(`What is your favorite movie?`, (movie) => {
         console.log(`I saw ${movie} recently, it's a great film.`)
+	resolve()
+})
+})
+}
+const main = async () => {
+	await question1()
+	await question2()
 	readline.close()
-});
+}
+main()
 
