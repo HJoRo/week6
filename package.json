@@ -4,7 +4,8 @@
   "description": "",
   "main": "input.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/HJoRo/week6/issues"
   },
-  "homepage": "https://github.com/HJoRo/week6#readme"
+  "homepage": "https://github.com/HJoRo/week6#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "mocha": "^8.1.1",
+    "node": "^14.7.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {}
 }
