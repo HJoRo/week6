@@ -6,10 +6,13 @@ const { listenerCount } = require('process');
 http.createServer(function (request, response) {
     console.log('request ', request.url);
 
-    var filePath = '.' + http.request.url;
-    if (filePath == './') {
+    var filePath = '.' + request.url;
+    if (filePath == './about') {
         filePath = './about.html';
+    } else {
+        filePath = './index.html'
     }
+
     var extname = String(path.extname(filePath)).toLowerCase();
     var mimeTypes = {
         '.html': 'text/html',
@@ -25,10 +28,11 @@ http.createServer(function (request, response) {
     };
     var contentType = mimeTypes[extname] || 'application/octet-stream';
     fs.readFile(filePath, function(error, request) {
+        console.log(filePath);
         if (error) {
             if(error.code == 'ENDENT') {
                 fs.readFile('./404.html', function(error, request) {
-                    response.writeHead(404, { 'Content-Type': contentType });
+                    response.writeHead(404, { 'Content-Type': 'text/html' });
                     response.end(request, 'utf-8');
                 });
             }
@@ -38,9 +42,9 @@ http.createServer(function (request, response) {
             }
         }
         else {
-            response.writeHead(200, { 'Content-Type': contentType });
-            response.end(sontent, 'utf-8');
+            response.writeHead(200, { 'Content-Type': 'text/html' });
+            response.end(request, 'utf-8');
         }
     });
 }).listen(8080);
-console.log('Server running at localhost:8080/about')
+console.log('Server running at localhost:8080')
